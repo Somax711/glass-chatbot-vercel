@@ -1,4 +1,6 @@
 export default async function handler(req, res) {
+  console.log('Request body:', req.body);
+
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Sólo se permiten solicitudes POST' });
   }
@@ -7,6 +9,7 @@ export default async function handler(req, res) {
   const apiKey = process.env.OPENAI_API_KEY;
 
   if (!apiKey) {
+    console.error('No API key');
     return res.status(500).json({ error: 'Falta la clave de API de OpenAI' });
   }
 
@@ -28,6 +31,8 @@ export default async function handler(req, res) {
     });
 
     const data = await response.json();
+
+    console.log('OpenAI response:', data);
 
     if (data.error) {
       console.error('OpenAI error:', data.error);
