@@ -6,7 +6,10 @@
   <title>Glass Card + ChatGPT en Vercel</title>
   <style>
     /*chattbo dentro de modal*/
-    .chat-box {
+    body{
+       background: linear-gradient(135deg, #74ebd5, #acb6e5);
+    }
+  .chat-box {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -16,7 +19,6 @@
   overflow-y: auto;
   height: 300px;
   margin-bottom: 10px;
-  background: #363535;
 }
 
 .chat-input {
@@ -34,7 +36,7 @@
 .chat-input button {
   padding: 8px 15px;
   border: none;
-  background: #4CAF50;
+  background: #0404a2;
   color: white;
   border-radius: 0 5px 5px 0;
   cursor: pointer;
@@ -51,134 +53,49 @@
 
 .bot {
   text-align: left;
-  color: green;
+  color: rgb(37, 12, 136);
+}
+.modal-content.animated {
+  animation: fadeInUp 0.4s ease forwards;
 }
 
-   
- 
-
-/* Estilos para el asistente de chat */
-.contacto {
-  position: fixed;
-  bottom: 15px;
-  right: 15px;
-  z-index: 1000;
-  text-align: center;
-}
-
-.ia {
-  position: relative;
-}
-
-.robot {
-  width: 130px;
-  height: auto;
-  cursor: pointer;
-}
-
-.fixed-message {
-  position: absolute;
-  bottom: 130px;
-  right: 0;
-  background-color: #000;
-  border-radius: 10px;
-  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  display: none;
-}
-
-.fixed-message p {
-  margin: 0;
-  font-size: 15px;
-}
-
-.chat-bubble {
-  display: none;
-  position: absolute;
-  bottom: 150px;
-  right: 0;
-  width: 350px;
-  background-color: #000;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 5px;
-}
-
-.chat-content {
-  text-align: left;
-  font-size: 11px;
-}
-
-.chat-content p {
-  margin: 0 0 10px;
-}
-
-.chat-content ul {
-  list-style: none;
-  padding: 0;
-  color: #fff;
-}
-
-.chat-content ul li {
-  margin: 5px 0;
-}
-
-.chat-content ul li a {
-  text-decoration: none;
-  color: #007bff;
-  display: flex;
-  align-items: center;
-}
-
-.chat-content ul li a i {
-  margin-right: 5px;
-}
-
-.chat-btn {
-  background-color: #90e9f3;
-  color: #000;
-  font-size: 15px;
-  border: none;
-  padding: 10px 10px;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-top: 10px;
-}
-
-.chat-btn:hover {
-  background-color: #0056b3;
-}
-p{
-  color: #fff;
-}
-/* Media Queries para dispositivos móviles */
-@media (max-width: 768px) {
-  .chat-bubble {
-    width: 150%;
-    bottom: 100px;
-    right: 10px;
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
   }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.chat-header {
+  background: linear-gradient(135deg, #74ebd5, #acb6e5);
+  padding: 10px 15px;
+  color: white;
+  font-weight: bold;
+  font-size: 1.2rem;
+  border-radius: 10px 10px 0 0;
+  text-align: center;
+  margin-bottom: 10px;
 }
   </style>
 </head>
 <body>
-  <div class="chat-section">
-    <div class="chat-card" onclick="openModal('chat2')">
-      <h3>Chatbot Ayuda</h3>
-      <p>Asistente para resolver dudas comunes.</p>
+<!-- Modal moderno -->
+<div id="chat1" class="modal">
+  <div class="modal-content animated">
+    <span class="close-btn" onclick="closeModal('chat1')">&times;</span>
+    <div class="chat-header">Asistente Virtual</div>
+    <div class="chat-box" id="chat-box"></div>
+    <div class="chat-input">
+      <input type="text" id="user-input" placeholder="Escribe tu mensaje...">
+      <button onclick="sendMessage()">Enviar</button>
     </div>
   </div>
+</div>
 
-  <div id="chat1" class="modal">
-    <div class="modal-content">
-      <span class="close-btn" onclick="closeModal('chat2')">&times;</span>
-      <div class="chat-box" id="chat-box"></div>
-      <div class="chat-input">
-        <input type="text" id="user-input" placeholder="Escribe tu mensaje..." />
-        <button onclick="sendMessage()">Enviar</button>
-      </div>
-    </div>
-  </div>
 
   <script>
     function openModal(id) {
