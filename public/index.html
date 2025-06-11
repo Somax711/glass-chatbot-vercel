@@ -4,12 +4,21 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Glass Card + ChatGPT en Vercel</title>
+
   <style>
-    /*chattbo dentro de modal*/
+    /*chatbot dentro de modal*/
     body{
-       background: linear-gradient(135deg, #74ebd5, #acb6e5);
+       background-image: linear-gradient(135deg, #090f0d, #3b4da3);
+    }
+    .modal{
+      display: flex;
+      justify-content: center;
+      margin-top: 250px; 
+    
     }
   .chat-box {
+  width: 500px;
+  height: 700px;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -37,7 +46,7 @@
 .chat-input button {
   padding: 8px 15px;
   border: none;
-  background: #0404a2;
+  background: #7600c5;
   color: white;
   border-radius: 0 5px 5px 0;
   cursor: pointer;
@@ -54,12 +63,11 @@
 
 .bot {
   text-align: left;
-  color: rgb(37, 12, 136);
+  color: rgb(218, 216, 226);
 }
 .modal-content.animated {
   animation: fadeInUp 0.4s ease forwards;
 }
-
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -70,9 +78,8 @@
     transform: translateY(0);
   }
 }
-
 .chat-header {
-  background: linear-gradient(135deg, #74ebd5, #acb6e5);
+  background: linear-gradient(135deg, #1d0aca, #acb6e5);
   padding: 10px 15px;
   color: white;
   font-weight: bold;
